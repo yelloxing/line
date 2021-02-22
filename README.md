@@ -11,17 +11,17 @@
 
 ## 如何使用？
 
-首先，需要安装npm包（目前我们中支持npm方式管理）：
+首先，需要安装npm包（目前我们仅支持npm方式管理）：
 
 ```
-npm install --save clunch @clunch/bar
+npm install --save clunch @clunch/line
 ```
 
 然后注册组件：
 
 ```js
 import Clunch from 'clunch';
-import line from '@clunch/liner';
+import line from '@clunch/line';
 
 Clunch.series('ui-line',line);
 ```
