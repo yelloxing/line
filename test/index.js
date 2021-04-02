@@ -13,5 +13,10 @@ window.clunch = new (Clunch.series('ui-line', line))({
             ]
         };
     },
-    render: image
+    render: image,
+    methods: {
+        doit(target) {
+            console.log(target);
+        }
+    }
 });
