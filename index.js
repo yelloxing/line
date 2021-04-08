@@ -66,6 +66,28 @@ export default ['number', 'json', '$ruler', '$getLoopColors', function ($number,
             default: function (render, attr) {
                 initConfig(attr, this);
 
+                var ruler = $ruler(attr['max-value'], attr['min-value'], 5);
+
+                // 校对颜色
+                if (attr.colors == null) attr.colors = $getLoopColors(attr.data.length);
+
+                var i, j, x, y;
+
+                var yTemp = (attr.height - 100) / (ruler.max - ruler.min);
+
+                // 绘制曲线
+                for (i = 0; i < attr.data.length; i++) {
+                    for (j = 0; j < attr.data[i].length; j++) {
+                        x = attr.x + 50 + (attr.width - 100) / (attr.data[i].length - 1) * j;
+                        y = attr.y + attr.height - 50 - (attr.data[i][j] - ruler.min) * yTemp;
+                        render(i + '-' + j, {
+                            value: attr.data[i][j],
+                            color: attr.colors[i],
+                            ruler: attr.ruler[j]
+                        }).fillCircle(x, y, 10);
+                    }
+                }
+
             }
         },
         link: function (painter, attr) {
